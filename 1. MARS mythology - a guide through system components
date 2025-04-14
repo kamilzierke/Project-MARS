@@ -1,0 +1,199 @@
+## M.A.R.S. – Modular Autonomous Resilient System
+
+### 🔥 Systemowa Mitologia (grecka)
+
+Artemis – inteligencja decyzyjna, łowczyni danych, kontroluje system.
+
+Ares – siła wykonawcza, odpowiada za fizyczne działania.
+
+Apollo – komunikacja i synchronizacja.
+
+Hephaistos – warstwa sprzętowa, zasilanie, diagnostyka.
+
+Athena – rezerwowa inteligencja, aktywowana przy awarii Artemis, w razie zagrożenia zrobi wszystko by odnaleźć drogę do domu.
+
+Hermes – komunikacja z operatorem, dziennik zdarzeń.
+
+Demeter – warstwa pamięci nieulotnej, lokalna baza danych i plików.
+
+Poseidon – kontrola sieci i synchronizacji czasowej (NTP/GNSS).
+
+## 📦 Struktura klas i komponentów systemu
+
+### 🧠 ArtemisCore 
+
+Główna jednostka decyzyjna systemu M.A.R.S.
+
+```
+ class ArtemisCore {
+public:
+  void awaken();             // inicjalizacja systemu
+  void huntSigns();          // akwizycja danych z czujników
+  void divineJudgement();    // analiza, inferencja, klasyfikacja TinyML
+  void commandAres(Action a); // wydanie polecenia do warstwy wykonawczej
+  void syncWithAthena();      // synchronizacja statusu i heartbeat
+}; 
+ ```
+
+### 🛡️ AresExecutor
+
+Warstwa egzekucyjna: silniki, sensory, transmisje, fizyczne operacje
+
+```
+ class AresExecutor {
+public:
+  void execute(Action a);   // wykonanie polecenia
+  void rageProtocol();      // tryb awaryjny (brute-force)
+  Status getStatus();       // raport działania
+}; 
+ ```
+
+### 🌞 ApolloLink
+
+Kanał wymiany danych Artemis/Athena ↔ Ares, synchronizacja systemowa, warstwa integracji szyn danych
+
+```
+ class ApolloLink {
+public:
+  void init();              // konfiguracja interfejsu (UART/I2C/SPI)
+  void transmit(Packet p);  // przesyłanie danych
+  void receive();           // odbiór komunikatów
+}; 
+ ```
+
+### 🔨 HephaistosForge
+
+Interfejs sprzętowy, GPIO, zasilanie, autotesty
+
+```
+ class HephaistosForge {
+public:
+  void configureHardware(); // GPIO, magistrale, ADC
+  void runDiagnostics();    // autotesty integralności
+  PowerStatus getPower();   // status zasilania i temperatury
+}; 
+ ```
+
+### 🧠 AthenaSentinel
+
+Rezerwowa jednostka decyzyjna, pełna niezależność w przypadku awarii Artemis
+
+```
+ class AthenaSentinel {
+public:
+  void monitorArtemis();   // watchdog i analiza pracy Artemis
+  void takeover();             // przejęcie dowodzenia
+  void strategicFallback();    // uproszczona logika decyzyjna (awaryjna)
+  void activateRedundancy();   // własne kanały komunikacji i GNSS
+  void attemptRecovery();      // reset / reprogramowanie Artemis
+}; 
+ ```
+
+### 🧾 HermesLogger
+
+Moduł odpowiedzialny za logi, komunikaty, historię działania i raporty dla operatora
+
+```
+ class HermesLogger {
+public:
+  void logEvent(String msg);    // zapis zdarzenia
+  void reportStatus();          // raport bieżącego stanu systemu
+  void syncWithOperator();      // synchronizacja logów (Wi-Fi, BLE, GSM)
+}; 
+ ```
+
+### 💾 DemeterStorage
+
+Warstwa lokalnej pamięci trwałej: pliki, snapshoty, bazy danych
+
+```
+ class DemeterStorage {
+public:
+  void store(String key, Data d);     // zapis danych lokalnych
+  Data retrieve(String key);          // odczyt danych
+  void manageLifecycle();             // rotacja, kompresja, archiwizacja
+}; 
+ ```
+
+### 🌐 PoseidonNetwork
+
+Moduł sieciowy i czasowy: zarządza połączeniami, fallback, synchronizacja czasu
+
+```
+ class PoseidonNetwork {
+public:
+  void establishLinks();     // zestawienie połączeń (Wi-Fi / GSM / BLE)
+  void fallbackRouting();    // wybór najlepszego kanału transmisji
+  void syncTime();           // synchronizacja NTP / GNSS
+}; 
+ ```
+
+### 🧭 Hierarchia i niezależność modułów
+
+[ATHENA (MCU)]
+  ├──> monitoruje ARTEMIS
+  ├──> może zastąpić: ARES, APOLLO, HEPHAISTOS, HERMES, DEMETER, POSEIDON
+  └──> może przejąć cały system (łącznie z ARTEMIS), jeśli uzna go za niesprawny
+
+[ARTEMIS (MCU)]
+  ├──> zawiera: ArtemisCore (logika), oraz uruchamia wszystkie moduły:
+  │     ├── AresExecutor
+  │     ├── ApolloLink
+  │     ├── HephaistosForge
+  │     ├── HermesLogger
+  │     ├── DemeterStorage
+  │     └── PoseidonNetwork
+  └──> nie może ingerować w Athenę
+
+### 🧷 Diagram zależności między modułami (z uwzględnieniem priorytetów i fizycznego podziału)
+ATHENA (MCU: ESP32-C3)
+│
+├── AthenaSentinel
+│   ├── monitoruje ArtemisCore
+│   ├── może przejąć: Ares, Apollo, Hephaistos
+│   ├── ma dostęp do: Hermes, Demeter, Poseidon
+│   └── może zastąpić ArtemisCore
+│
+ARTEMIS (MCU: Apollo3 Blue)
+│
+├── ArtemisCore
+│   ├── steruje: AresExecutor
+│   ├── komunikuje: ApolloLink
+│   ├── diagnozuje: HephaistosForge
+│   ├── loguje przez: HermesLogger
+│   ├── zapisuje do: DemeterStorage
+│   └── synchronizuje przez: PoseidonNetwork
+
+
+
+Athena = nadrzędna jednostka rezerwowa, zdolna do działania całkowicie samodzielnie.
+
+Artemis = główne centrum systemowe, ale ograniczone do swojego MCU.
+
+Pozostałe moduły są funkcjami logicznymi, zależnymi od aktywności Artemis lub Atheny.
+
+Athena może zignorować logikę Artemis, jeśli uzna jej brak reakcji za błąd systemowy.
+
+
+
+### 🧠 Uwagi projektowe
+
+
+
+Artemis i Athena nie działają równolegle – Athena przejmuje kontrolę nad systemem tylko w przypadku wykrycia awarii Artemis. Jeżeli jednak Artemis nie podejmie prób naprawy modułów uznanych przez Athenę za wadliwe, Athena może uznać Artemis również za niesprawną i przejąć system.
+
+Athena ma prawo przejąć kontrolę nad dowolnym modułem jeśli detekuje jego niesprawność, brak odpowiedzi lub nieskuteczność – niezależnie od reakcji Artemis.
+
+Ares nigdy nie podejmuje samodzielnych decyzji – wykonuje tylko polecenia Artemis lub Atheny. W razie braku odpowiedzi może być wyłączony i pominięty przez Athenę.
+
+Apollo jest wspólną, potencjalnie redundantną warstwą komunikacyjną. Jeśli zawiedzie, Athena może przejąć transmisję, ignorując jego klasy i procedury.
+
+Hephaistos integruje warstwę sprzętową (GPIO, magistrale, czujniki, zasilanie) i wykonuje autotesty. W przypadku jego wadliwości Athena przejmuje pełną kontrolę nad fizycznymi połączeniami i procedurami sprzętowymi.
+
+Hermes odpowiada za logowanie zdarzeń, komunikaty systemowe i synchronizację z operatorem. W razie potrzeby Athena może uruchomić uproszczony dziennik awaryjny.
+
+Demeter zarządza pamięcią trwałą: przechowywaniem danych, plikami, snapshotami i lokalną bazą danych. Athena może przejąć lub zmodyfikować jej politykę zapisu jeśli wymagają tego warunki misji.
+
+Poseidon obsługuje transmisję sieciową (Wi-Fi, BLE, GSM) i synchronizację czasu (GNSS, NTP). Athena może zainicjować fallback, wymusić alternatywny kanał lub odłączyć ten moduł całkowicie w trybie awaryjnym.
+
+
