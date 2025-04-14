@@ -27,11 +27,6 @@ M.A.R.S jest odpowiedzią na potrzebę systemów, które nie tylko **działają*
 > *(Niezłomny duch, aż po kres rzeczy)*
 
 
-![[8b5a5c3f-2fe9-43c2-a14b-sdaffd1b78f91e9d35.png]]
-
-
-
-
 
 
 ## Założenia główne projektu M.A.R.S
