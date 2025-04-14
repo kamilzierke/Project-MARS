@@ -1,51 +1,59 @@
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/c3794b91-7b55-4167-a11d-af2066c03890" alt="8b5a5c3f-2fe9-43c2-a14b-sdaffd1b78f91e9d35" width="50%">
+</div>
 
-## 🛰 Manifest systemu M.A.R.S  
+## 🛰️ Project M.A.R.S  
 **Modular Autonomous Resilient System**
 
-> _Nie umrę. Nie zamilknę. Będę działać tak długo, jak choć jeden bit logiki pozostanie aktywny._
+> _Będę działać tak długo, jak pozostanie choć jedna linia kodu i choć jeden zasilony pin._
 
-M.A.R.S to nie tylko system elektroniczny. To **samodzielna istota techniczna**, stworzona jako wysłannik człowieka do miejsc, gdzie nadzór, zasilanie i wsparcie zawodzą. To duch eksploracji, zaklęty w układach scalonych. To odpowiedź na pytanie: *czy system może przetrwać sam?*
+M.A.R.S nie powstał po to, by był tylko kolejnym urządzeniem. To projekt, który zadaje pytanie: **czy system może przetrwać sam**? Czy może działać mimo awarii, izolacji, braku wsparcia?
 
-Tak jak sondy Voyager, które przekroczyły granice heliosfery — działając daleko poza zakładane możliwości — tak i M.A.R.S ma służyć **nieprzerwanie**, nawet jeśli zostanie samotny, uszkodzony, lub zapomniany.
+Zaprojektowany z myślą o **niezależności i odporności**, system ten ma działać tam, gdzie zawodzą inne — w miejscach odciętych od infrastruktury, z ograniczonym nadzorem, w obliczu błędów i braku zasilania.
 
-System ten został zaprojektowany z myślą o **niezależności, samonaprawie i decyzyjności**, w oparciu o zasady:
-- Minimalne zależności zewnętrzne
-- Redundancja sprzętowa i programowa
-- Modułowość i rekonfigurowalność
-- Ciągłe monitorowanie własnego stanu
-- Praca degradacyjna zamiast zatrzymania
-- Autonomia energetyczna i komunikacyjna
-- Możliwość naprawy, rekonfiguracji i rozszerzania przez operatora – nawet zdalnie
+Tak jak sonda *Mars Odyssey*, która od 2001 roku nieprzerwanie orbituje wokół Czerwonej Planety — daleko poza zakładanym czasem pracy — M.A.R.S ma być systemem, który **nie przestanie wykonywać swojej misji**, nawet gdy wszystko inne zamilknie.
 
-M.A.R.S jest manifestacją **nieposkromionego ducha ludzkiej inżynierii**: odpornego, elastycznego, zawsze dzielącego się zdobytą wiedzą — dopóki tylko jest w nim iskra.
+### Fundamenty działania:
+- Minimalne zależności zewnętrzne  
+- Redundancja sprzętowa i programowa  
+- Modułowa architektura i rekonfigurowalność  
+- Monitorowanie stanu i tryby awaryjne  
+- Autonomia energetyczna i komunikacyjna  
+- Możliwość zdalnej naprawy i rekonfiguracji  
 
-![[8b5a5c3f-2fe9-43c2-a14b-1b78f91e9d35.png]]
+M.A.R.S jest odpowiedzią na potrzebę systemów, które nie tylko **działają**, ale **trwają**. Które mogą zostać zapomniane — i mimo to wykonywać swoje zadanie. To inżynieria z myślą o przyszłości, gdzie niezawodność to nie opcja czy szczęśliwy zbieg okoliczności, a konieczność.
+
+> _Invictus animus, ultra finem rerum_  
+> *(Niezłomny duch, aż po kres rzeczy)*
 
 
->_INVICTUS ANIMUS, ULTRA FINEM RERUM_
+![[8b5a5c3f-2fe9-43c2-a14b-sdaffd1b78f91e9d35.png]]
+
+
+
 
 
 
 ## Założenia główne projektu M.A.R.S
-1. Modularna, skalowalna platforma sprzętowo-programowa do zdalnego sterowania, autonomicznego wykonywania zadań i wielokanałowej akwizycji danych z czujników. System wspiera lokalizację w czasie rzeczywistym ([[GNSS]]/[[INS]]/[[RTK]]), komunikację dwukierunkową (LTE/NB-IoT/LoRa), oraz analizę i przesył danych do systemów nadrzędnych ([[MQTT]]/[[REST]]/[[WebSocket]]).
+1. Modularna, skalowalna platforma sprzętowo-programowa do zdalnego sterowania, autonomicznego wykonywania zadań i wielokanałowej akwizycji danych z czujników. System wspiera lokalizację w czasie rzeczywistym ([[GNSS]]/[[INS]]/[[RTK]]), komunikację dwukierunkową ([[LTE]]/NB-IoT/LoRa), oraz analizę i przesył danych do systemów nadrzędnych ([[MQTT]]/[[REST]]/[[WebSocket]]).
 2. Możliwość pracy w trybie półautonomicznym (operator nadzorujący) lub całkowicie autonomicznym, z lokalnym podejmowaniem decyzji na podstawie danych z sensorów i logiki stanu. System przystosowany do pracy w środowiskach o ograniczonej infrastrukturze komunikacyjnej, z zapewnieniem odporności na zakłócenia (watchdog, fallback logic, redundantne kanały komunikacji).
-3. Wbudowany system autodiagnostyki i raportowania stanu komponentów sprzętowych i programowych, z rejestrowaniem zdarzeń w pamięci lokalnej oraz możliwością zdalnego monitoringu. Obsługa mechanizmów watchdog, logowania błędów, detekcji anomalii i transmisji komunikatów diagnostycznych ([[MQTT]]/syslog/[[JSON]]-[[REST]]), z opcjonalnym wykorzystaniem LoRa beaconów i wsparciem dla sieci LoRaWAN do niskoenergetycznej transmisji danych diagnostycznych.
+3. Wbudowany system autodiagnostyki i raportowania stanu komponentów sprzętowych i programowych, z rejestrowaniem zdarzeń w pamięci lokalnej oraz możliwością zdalnego monitoringu. Obsługa mechanizmów watchdog, logowania błędów, detekcji anomalii i transmisji komunikatów diagnostycznych ([[MQTT]]/[[syslog]]/[[JSON]]-[[REST]]), z opcjonalnym wykorzystaniem [[LoRa]] beaconów i wsparciem dla sieci [[LoRaWAN]] do niskoenergetycznej transmisji danych diagnostycznych.
 4. Obsługa elastycznego zasilania z wykorzystaniem dedykowanego układu zarządzania energią ([[PMIC]]), umożliwiającego pracę z szerokim zakresem napięć wejściowych (np. 5–24 V DC), obsługę ładowania akumulatorów Li-Ion/LiFePO₄, detekcję źródła zasilania, monitorowanie napięć/prądów oraz tryby oszczędzania energii (deep sleep, standby). Możliwa integracja z USB-C (PD), PoE lub innymi źródłami zasilania zewnętrznego.
-5. Wbudowane mechanizmy zapewnienia ciągłości działania systemu poprzez redundancję i logikę awaryjną na poziomie komunikacji (fallback LTE/SMS/LoRa), zasilania (automatyczne przełączanie źródeł przez [[PMIC]]), software’u (watchdog, auto[[REST]]art, tryby degradacyjne), oraz architektury sprzętowej (modularność, rekonfigurowalność, backup MCU z własnym zasilaniem). System wspiera podstawową transmisję telemetrii (raporty stanu, heartbeat) nawet przy minimalnym paśmie transmisji, z logiką sondy kosmicznej – podejmując autonomiczne decyzje w razie braku łączności.
-6. Projekt realizowany zgodnie z zasadami otwartego hardware i software, z pełną dokumentacją sprzętową (schematy, PCB, BOM) w formatach open-source (np. KiCad) i kodem źródłowym oprogramowania (Firmware/Tooling) na licencjach typu MIT/GPL. Repozytoria dostępne publicznie z możliwością forku, modyfikacji i niezależnego audytu.
+5. Wbudowane mechanizmy zapewnienia ciągłości działania systemu poprzez redundancję i logikę awaryjną na poziomie komunikacji (fallback [[LTE()]]/[[SMS]]/[LoRa]()), zasilania (automatyczne przełączanie źródeł przez [[PMIC]]), software’u (watchdog, autorestart, tryby degradacyjne), oraz architektury sprzętowej (modularność, rekonfigurowalność, backup [[MCU]] z własnym zasilaniem). System wspiera podstawową transmisję telemetrii (raporty stanu, heartbeat) nawet przy minimalnym paśmie transmisji, z logiką sondy kosmicznej – podejmując autonomiczne decyzje w razie braku łączności.
+6. Projekt realizowany zgodnie z zasadami otwartego hardware i software, z pełną dokumentacją sprzętową (schematy, [[PCB]], [[BOM]]) w formatach open-source (np. KiCad) i kodem źródłowym oprogramowania (Firmware/Tooling) na licencjach typu MIT/GPL. Repozytoria dostępne publicznie z możliwością forku, modyfikacji i niezależnego audytu.
 7. Projekt nie jest ukierunkowany na finalny, komercyjny produkt, lecz na nieprzerwaną fazę badawczo-rozwojową (R&D), umożliwiającą swobodne eksperymentowanie z architekturą sprzętową i programową, inkrementalne wprowadzanie zmian oraz testowanie koncepcji bez ograniczeń cyklem produkcyjnym.
 8. Preferowane wykorzystanie, adaptacja i modyfikacja istniejących rozwiązań open-source, przy każdorazowej ocenie kosztów wdrożenia względem funkcjonalności i czasu realizacji (czas vs. wartość).
 9. Brak zależności od zewnętrznych, zamkniętych ekosystemów – projekt musi umożliwiać pełną kontrolę nad kodem źródłowym, sprzętem i procesem rozwoju. Wszystkie warstwy systemu muszą być możliwe do zbudowania i uruchomienia lokalnie.
-10. Projekt pełni funkcję edukacyjną – rozwój kompetencji w zakresie tworzenia firmware’u i projektowania PCB oraz eksperymentalna implementacja mikro-AI (TinyML) w warunkach ograniczonej infrastruktury.
+10. Projekt pełni funkcję edukacyjną – rozwój kompetencji w zakresie tworzenia firmware’u i projektowania [[PCB]] oraz eksperymentalna implementacja mikro-AI (TinyML) w warunkach ograniczonej infrastruktury.
 11. Efektywność kosztowa – komponenty dobierane na podstawie stosunku możliwości do ceny.
-
 12. System zaprojektowany jako mobilny, gotowy do pracy w środowiskach zewnętrznych, w tym bateryjnych i niestabilnych komunikacyjnie.
+
 ## Wymagania funkcjonalne – jednostka główna (MCU)
 1. Energooszczędny mikrokontroler 32-bitowy (np. RISC-V ESP32-C3 lub ARM Cortex-M4 STM32L476RG) z wystarczającą mocą do obsługi logiki systemowej, komunikacji i uruchamiania modeli TinyML / mikro-AI do autonomicznego podejmowania decyzji.
 2. Obsługa wielu trybów oszczędzania energii (active/sleep/deep sleep/standby), z niskim poborem prądu i szybkim czasem wybudzania.
 3. Wbudowany oscylator (RC/XTAL) zapewniający niezależność od zewnętrznych źródeł taktowania.
 4. Kompatybilność z magistralami komunikacyjnymi: I²C, SPI, UART (obowiązkowe); PMBus i CAN (opcjonalne, w zależności od integracji z modułami).
-5. Obsługa komunikacji z urządzeniami AT (np. modemy GSM/LTE) przez porty szeregowe.
+5. Obsługa komunikacji z urządzeniami AT (np. modemy GSM/[[LTE]]) przez porty szeregowe.
 6. Obsługa Wi-Fi (opcjonalna) – do komunikacji lokalnej lub konfiguracji.
 7. Obsługa BLE (opcjonalna) – do komunikacji krótkiego zasięgu, konfiguracji lub diagnostyki.
 8. Otwarte SDK i środowisko programistyczne (ESP-IDF, STM32 HAL, itp.), bez zamkniętych kompilatorów i toolchainów.
@@ -63,7 +71,7 @@ M.A.R.S jest manifestacją **nieposkromionego ducha ludzkiej inżynierii**: odpo
 ## Fallback i odporność systemu (rezyliencja)
 1. Wsparcie dla niezależnych źródeł energii (np. zintegrowane moduły PV), z funkcją dynamicznego zarządzania poborem mocy – automatyczne odłączanie niewykorzystywanych modułów, zarządzanie zasilaniem per-segmentowym, i zaawansowane strategie oszczędzania energii (praca cykliczna, deep sleep, wake-on-event).
 2. Redundancja zasilania poprzez możliwość równoległego wykorzystania wielu źródeł (zewnętrzne zasilacze DC, akumulatory, ogniwa PV), z zarządzaniem przez jeden lub więcej układów [[PMIC]]. System automatycznie przełącza się między źródłami, monitoruje parametry zasilania i zachowuje ciągłość pracy przy awarii dowolnego z nich.
-3. Redundancja komunikacyjna oparta na równoległym wykorzystaniu wielu interfejsów transmisji danych (np. LTE/NB-IoT, GSM/SMS, LoRa/LoRaWAN, Wi-Fi, BLE). System posiada warstwę abstrakcji komunikacyjnej z logiką priorytetów, automatycznego przełączania i okresowego testowania łączności. Możliwość pracy w trybie degradacyjnym, z minimalną telemetrią przesyłaną kanałem awaryjnym.
+3. Redundancja komunikacyjna oparta na równoległym wykorzystaniu wielu interfejsów transmisji danych (np. [[LTE]]/NB-IoT, GSM/SMS, LoRa/LoRaWAN, Wi-Fi, BLE). System posiada warstwę abstrakcji komunikacyjnej z logiką priorytetów, automatycznego przełączania i okresowego testowania łączności. Możliwość pracy w trybie degradacyjnym, z minimalną telemetrią przesyłaną kanałem awaryjnym.
 4. Architektura modułowa systemu, umożliwiająca niezależną integrację, wymianę lub izolację poszczególnych komponentów (np. zasilania, komunikacji, czujników, pamięci). Każdy moduł posiada zdefiniowane interfejsy logiczne i fizyczne (np. UART/I²C/SPI, magistrale zasilania, złącza typu board-to-board).
 5. System wyposażony w rezerwową jednostkę sterującą (backup MCU) z niezależnym zasilaniem i podstawową logiką awaryjną, działającą autonomicznie w przypadku całkowitej awarii głównego systemu. Backup MCU zapewnia m.in. transmisję sygnału awaryjnego, lokalizację, podstawową telemetrię oraz możliwość wymuszenia [[REST]]artu lub aktywacji podstawowych funkcji systemu.
 6. Redundancja w warstwie zarządzającej: możliwość zdalnego lub automatycznego [[REST]]artu głównej jednostki logicznej (MCU/SoC) przez jednostkę pomocniczą lub watchdog sprzętowy. System wspiera fizyczne i programowe mechanizmy przejęcia kontroli przez jednostkę rezerwową oraz rekonfigurację po błędach krytycznych.
