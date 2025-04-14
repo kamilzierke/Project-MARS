@@ -44,7 +44,7 @@ M.A.R.S jest odpowiedzią na potrzebę systemów, które nie tylko **działają*
 12. System zaprojektowany jako mobilny, gotowy do pracy w środowiskach zewnętrznych, w tym bateryjnych i niestabilnych komunikacyjnie.
 
 ## Wymagania funkcjonalne – jednostka główna (MCU)
-1. Energooszczędny mikrokontroler 32-bitowy (np. RISC-V ESP32-C3 lub ARM Cortex-M4 STM32L476RG) z wystarczającą mocą do obsługi logiki systemowej, komunikacji i uruchamiania modeli TinyML / mikro-AI do autonomicznego podejmowania decyzji.
+1. Energooszczędny mikrokontroler 32-bitowy (moduł Sparkfun Artemis z rdzeniem amiq Apollo3) z wystarczającą mocą do obsługi logiki systemowej, komunikacji i uruchamiania modeli TinyML / mikro-AI do autonomicznego podejmowania decyzji.
 2. Obsługa wielu trybów oszczędzania energii (active/sleep/deep sleep/standby), z niskim poborem prądu i szybkim czasem wybudzania.
 3. Wbudowany oscylator (RC/XTAL) zapewniający niezależność od zewnętrznych źródeł taktowania.
 4. Kompatybilność z magistralami komunikacyjnymi: I²C, SPI, UART (obowiązkowe); PMBus i CAN (opcjonalne, w zależności od integracji z modułami).
